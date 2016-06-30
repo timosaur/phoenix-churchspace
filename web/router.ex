@@ -18,6 +18,7 @@ defmodule Churchspace.Router do
 
     get "/", PageController, :index
     resources "/posts", PostController
+    resources "/events", EventController
   end
 
   # Other scopes may use custom stacks.
