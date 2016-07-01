@@ -18,18 +18,23 @@ defmodule Churchspace.PostController do
   defp event_posts(nil), do: Post
   defp event_posts(%Event{} = event), do: assoc(event, :posts)
 
+  defp post_changeset(nil), do: %Post{}
+  defp post_changeset(%Event{} = event), do: event |> build_assoc(:posts)
+
   def index(conn, _params) do
     posts = Repo.all(event_posts(conn.assigns[:event]))
     render(conn, "index.html", posts: posts)
   end
 
   def new(conn, _params) do
-    changeset = Post.changeset(%Post{})
+    changeset = Post.changeset(post_changeset(conn.assigns[:event]))
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"post" => post_params}) do
-    changeset = Post.changeset(%Post{}, post_params)
+    changeset =
+      post_changeset(conn.assigns[:event])
+      |> Post.changeset(post_params)
 
     case Repo.insert(changeset) do
       {:ok, _post} ->
