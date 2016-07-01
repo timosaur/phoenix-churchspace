@@ -4,6 +4,7 @@ defmodule Churchspace.Post do
   schema "posts" do
     field :title, :string
     field :body, :string
+    belongs_to :event, Churchspace.Event
 
     timestamps()
   end

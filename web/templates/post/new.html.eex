@@ -1,6 +1,9 @@
 <h2>New post</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: post_path(@conn, :create) %>
+                        action: if @event, do:
+                                  event_post_path(@conn, :create, @event),
+                                else:
+                                  post_path(@conn, :create) %>
 
 <%= link "Back", to: post_path(@conn, :index) %>
