@@ -5,6 +5,7 @@ defmodule Churchspace.Category do
     field :title, :string
     field :description, :string
     belongs_to :event, Churchspace.Event
+    has_many :posts, Churchspace.Post
 
     timestamps()
   end
@@ -16,5 +17,21 @@ defmodule Churchspace.Category do
     struct
     |> cast(params, [:title, :description])
     |> validate_required([:title, :description])
+  end
+
+  def alphabetical(query) do
+    from c in query, order_by: c.title
+  end
+
+  def for_event(query, nil) do
+    from c in query, where: is_nil(c.event_id)
+  end
+
+  def for_event(query, id) do
+    from c in query, where: c.event_id == ^id
+  end
+
+  def titles_and_ids(query) do
+    from c in query, select: {c.title, c.id}
   end
 end
