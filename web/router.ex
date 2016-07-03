@@ -17,9 +17,11 @@ defmodule Churchspace.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/categories", CategoryController
     resources "/posts", PostController
     resources "/events", EventController do
-      # For event posts.
+      # For event posts and categories.
+      resources "/categories", CategoryController
       resources "/posts", PostController
     end
   end

@@ -4,6 +4,7 @@ defmodule Churchspace.Event do
   schema "events" do
     field :name, :string
     field :description, :string
+    has_many :categories, Churchspace.Category
     has_many :posts, Churchspace.Post
 
     timestamps()
