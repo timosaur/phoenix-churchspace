@@ -36,6 +36,8 @@ defmodule Churchspace.Web do
 
       import Churchspace.Router.Helpers
       import Churchspace.Gettext
+
+      import Churchspace.PathHelpers
     end
   end
 
@@ -52,6 +54,8 @@ defmodule Churchspace.Web do
       import Churchspace.Router.Helpers
       import Churchspace.ErrorHelpers
       import Churchspace.Gettext
+
+      import Churchspace.PathHelpers
     end
   end
 
