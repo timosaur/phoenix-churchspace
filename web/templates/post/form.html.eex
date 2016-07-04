@@ -6,6 +6,13 @@
   <% end %>
 
   <div class="form-group">
+    <%= label f, :parent_id, "Category", class: "control-label" %>
+    <%= select f, :parent_id, @categories, class: "form-control",
+                                           prompt: "Choose a category" %>
+    <%= error_tag f, :parent_id %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>
     <%= error_tag f, :title %>
