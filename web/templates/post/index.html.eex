@@ -25,4 +25,7 @@
   </tbody>
 </table>
 
+<%= if @event do %>
+  <%= link "Back to event", to: event_path(@conn, :show, @event) %>
+<% end %>
 <%= link "New post", to: path_for_post(@conn, :new) %>
