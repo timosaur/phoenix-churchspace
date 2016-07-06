@@ -12,6 +12,12 @@
     <%= error_tag f, :parent_id %>
   </div>
 
+  <div class="checkbox">
+    <%= checkbox f, :is_category %>
+    <%= label f, :is_category %>
+    <%= error_tag f, :is_category %>
+  </div>
+
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>

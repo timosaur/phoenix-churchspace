@@ -10,6 +10,7 @@ defmodule Churchspace.PostController do
   defp load_categories(conn, _) do
     query =
       Post
+      |> Post.categories
       |> Post.titles_and_ids
       |> Post.for_event(conn.params["event_id"])
     categories = Repo.all(query)
