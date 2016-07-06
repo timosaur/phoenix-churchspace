@@ -4,6 +4,19 @@ defmodule Churchspace.PostController do
   alias Churchspace.Event
   alias Churchspace.Post
 
+  plug :scrub_params, "post" when action in [:create, :update]
+  plug :load_categories when action in [:new, :create, :edit, :update]
+
+  defp load_categories(conn, _) do
+    query =
+      Post
+      |> Post.categories
+      |> Post.titles_and_ids
+      |> Post.for_event(conn.params["event_id"])
+    categories = Repo.all(query)
+    assign(conn, :categories, categories)
+  end
+
   def action(conn, _) do
     conn =
       case conn.params do
