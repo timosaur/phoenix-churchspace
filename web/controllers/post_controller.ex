@@ -23,7 +23,7 @@ defmodule Churchspace.PostController do
         %{"event_id" => id} ->
           assign(conn, :event, Repo.get!(Event, id))
         _ ->
-          conn
+          assign(conn, :event, nil)
       end
     apply(__MODULE__, action_name(conn), [conn, conn.params])
   end

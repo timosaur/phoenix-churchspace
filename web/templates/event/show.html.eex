@@ -12,6 +12,11 @@
     <%= @event.description %>
   </li>
 
+  <li>
+    <strong>Posts:</strong>
+    <%= link "Posts", to: event_post_path(@conn, :index, @event) %>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: event_path(@conn, :edit, @event) %>
