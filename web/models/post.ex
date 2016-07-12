@@ -12,6 +12,9 @@ defmodule Churchspace.Post do
     belongs_to :event, Churchspace.Event
     belongs_to :parent, Churchspace.Post
 
+    has_one :next_post, Churchspace.Post
+    has_one :prev_post, Churchspace.Post
+
     timestamps()
   end
 
@@ -34,6 +37,14 @@ defmodule Churchspace.Post do
 
   def for_event(query, id) do
     from p in query, where: p.event_id == ^id
+  end
+
+  def for_parent(query, nil) do
+    from p in query, where: is_nil(p.parent_id)
+  end
+
+  def for_parent(query, id) do
+    from p in query, where: p.parent_id == ^id
   end
 
   def alphabetical(query) do

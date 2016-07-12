@@ -1,0 +1,28 @@
+<h2>Show event viewer</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </li>
+
+  <li>
+    <strong>Posts:</strong>
+    <%= link "Posts", to: event_post_path(@conn, :index, @event) %>
+  </li>
+
+</ul>
+
+<ul>
+<%= for post <- @posts do %>
+  <li><%= post.title %>: <%= post.parent_id %></li>
+<% end %>
+</ul>
+
+<%= link "Back", to: event_viewer_path(@conn, :index) %>

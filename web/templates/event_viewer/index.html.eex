@@ -1,0 +1,22 @@
+<h2>Listing events</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event_viewer <- @events do %>
+    <tr>
+
+      <td class="text-right">
+        <%= link "Show", to: event_viewer_path(@conn, :show, event_viewer), class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New event viewer", to: event_viewer_path(@conn, :new) %>

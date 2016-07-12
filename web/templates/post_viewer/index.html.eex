@@ -1,0 +1,20 @@
+<h2>Listing posts</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for post <- @posts do %>
+    <tr>
+
+      <td class="text-right">
+        <%= link "Show", to: post_viewer_path(@conn, :show, post), class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

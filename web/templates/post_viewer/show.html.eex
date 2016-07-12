@@ -1,0 +1,42 @@
+<h2>Show post viewer</h2>
+
+<ul class="nav nav-pills">
+<%= for post <- @top_level_posts do %>
+  <li <%= if @post.id == post.id, do: "class=active"%>>
+    <%= link post.title, to: post_viewer_path(@conn, :show, @event, post) %>
+  </li>
+<% end %>
+</ul>
+
+<ul class="nav nav-pills">
+<%= for post <- @siblings do %>
+  <li <%= if @post.id == post.id, do: "class=active"%>>
+    <%= link post.title, to: post_viewer_path(@conn, :show, @event, post) %>
+  </li>
+<% end %>
+</ul>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @post.body %>
+  </li>
+
+  <li>
+    <strong>Children:</strong>
+    <ul> <%= for post <- @children do %>
+      <li>
+        <%= link post.title, to: post_viewer_path(@conn, :show, @event, post) %>
+      </li>
+    <% end %>
+    </ul>
+  </li>
+
+</ul>
+
