@@ -28,7 +28,7 @@ defmodule Churchspace.PostController do
     apply(__MODULE__, action_name(conn), [conn, conn.params])
   end
 
-  defp event_posts(nil), do: Post
+  defp event_posts(nil), do: Post |> Post.for_event(nil)
   defp event_posts(%Event{} = event), do: assoc(event, :posts)
 
   defp post_changeset(nil), do: %Post{}
