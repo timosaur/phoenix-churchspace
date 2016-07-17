@@ -5,6 +5,8 @@
     <tr>
       <th>Title</th>
       <th>Body</th>
+      <th>Category ID</th>
+      <th>Sort Index</th>
 
       <th></th>
     </tr>
@@ -13,7 +15,9 @@
 <%= for post <- @posts do %>
     <tr>
       <td><%= post.title %></td>
-      <td><%= post.body %></td>
+      <td><%= post.body |> String.slice(0, 255) %></td>
+      <td><%= post.parent_id %></td>
+      <td><%= post.sort_index %></td>
 
       <td class="text-right">
         <%= link "Show", to: path_for_post(@conn, :show, post), class: "btn btn-default btn-xs" %>

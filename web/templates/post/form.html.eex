@@ -19,6 +19,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :sort_index, class: "control-label" %>
+    <%= text_input f, :sort_index, class: "form-control" %>
+    <%= error_tag f, :sort_index %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>
     <%= error_tag f, :title %>

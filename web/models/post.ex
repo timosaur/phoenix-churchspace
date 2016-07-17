@@ -2,15 +2,15 @@ defmodule Churchspace.Post do
   use Churchspace.Web, :model
 
   @required_fields ~w(title)a
-  @optional_fields ~w(body is_category parent_id)a
+  @optional_fields ~w(body is_category sort_index parent_id)a
 
   schema "posts" do
     field :title, :string
     field :body, :string
     field :is_category, :boolean
-    field :sort_index, :integer
+    field :sort_index, :integer, default: 0
     belongs_to :event, Churchspace.Event
-    belongs_to :parent, Churchspace.Post
+    belongs_to :parent, __MODULE__
 
     timestamps()
   end
