@@ -1,0 +1,7 @@
+<ul class="row list-unstyled">
+<%= for post <- @posts do %>
+  <li class="col-md-12 col-md-offset-<%= post.depth - 1 %>">
+    <%= link post.title, to: view_event_post_path(@conn, :show, @event, post) %>
+  </li>
+<% end %>
+</ul>
