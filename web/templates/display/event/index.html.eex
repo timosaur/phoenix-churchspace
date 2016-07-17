@@ -1,0 +1,24 @@
+<h2>Listing events</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event <- @events do %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.description |> String.slice(0, 255) %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: view_event_path(@conn, :show, event), class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
