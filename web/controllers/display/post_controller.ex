@@ -4,6 +4,16 @@ defmodule Churchspace.Display.PostController do
   alias Churchspace.Event
   alias Churchspace.Post
 
+  plug :load_posts
+
+  defp load_posts(conn, _) do
+    posts =
+      conn.params["event_id"]
+      |> Post.sorted_event_posts()
+      |> Repo.exec_query(Post)
+    assign(conn, :posts, posts)
+  end
+
   def action(conn, _) do
     conn =
       case conn.params do
@@ -15,14 +25,8 @@ defmodule Churchspace.Display.PostController do
     apply(__MODULE__, action_name(conn), [conn, conn.params])
   end
 
-  defp event_posts(nil), do: Post |> Post.for_event(nil)
-  defp event_posts(%Event{} = event), do: assoc(event, :posts)
-
   def index(conn, _params) do
-    posts =
-      Post.sorted_event_posts(conn.assigns[:event])
-      |> Repo.exec_query(Post)
-    render(conn, "index.html", posts: posts)
+    render(conn, "index.html")
   end
 
   def show(conn, %{"id" => id}) do

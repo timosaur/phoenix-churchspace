@@ -59,7 +59,6 @@ defmodule Churchspace.Post do
     from p in query, select: {p.title, p.id}
   end
 
-
   def sorted_event_posts(event_id) when is_integer(event_id) do
     qry = """
       WITH RECURSIVE tree AS
