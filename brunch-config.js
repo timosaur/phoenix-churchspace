@@ -22,7 +22,7 @@ exports.config = {
     stylesheets: {
       joinTo: "css/app.css",
       order: {
-        after: ["web/static/css/app.css"] // concat app.css last
+        after: ["web/static/css/app.scss"] // concat app.scss last
       }
     },
     templates: {
@@ -41,6 +41,7 @@ exports.config = {
   paths: {
     // Dependencies and current project directories to watch
     watched: [
+      "node_modules/bootstrap-sass/assets/javascripts",
       "web/static",
       "test/static"
     ],
@@ -54,16 +55,35 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
-    }
+    },
+    sass: {
+      options: {
+        includePaths: [
+          "node_modules/bootstrap-sass/assets/stylesheets",
+        ],
+      },
+      precision: 8,
+    },
+    copycat: {
+      "fonts": [
+        "node_modules/bootstrap-sass/assets/fonts/bootstrap",
+      ],
+    },
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": ["web/static/js/app"]
+      "js/app.js": [
+        "web/static/js/app",
+      ],
     }
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery',
+    }
   }
 };
