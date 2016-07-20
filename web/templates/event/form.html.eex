@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
+    <%= textarea f, :description, class: "form-control", id: "editor-input" %>
     <%= error_tag f, :description %>
   </div>
 
@@ -21,3 +21,5 @@
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
+<%= render Churchspace.EditorView, "basic_editor.html",
+           data: @changeset.data.description, id: "editor" %>

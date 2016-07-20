@@ -13,6 +13,7 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import "bootstrap-sass"
+import "quill"
 
 // Import local files
 //
@@ -20,3 +21,21 @@ import "bootstrap-sass"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+import {loadEditor} from './editor';
+
+// Initialize page-specific JS
+//
+// Run after document ready, expects JQuery.
+$(function() {
+
+  switch ($('body').data('js-path')) {
+
+    case 'event/edit.html':
+    case 'post/edit.html':
+      loadEditor(document.getElementById('editor'),
+                 document.getElementById('editor-input'));
+      break;
+
+  }
+
+});
