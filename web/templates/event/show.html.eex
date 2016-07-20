@@ -9,7 +9,7 @@
 
   <li>
     <strong>Description:</strong>
-    <%= @event.description %>
+    <%= @event.description |> sanitize %>
   </li>
 
   <li>
