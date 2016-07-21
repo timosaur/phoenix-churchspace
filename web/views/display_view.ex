@@ -63,10 +63,12 @@ defmodule Churchspace.DisplayView do
   end
 
   defp toggle_elem(id, text) do
-    link text,
-         to: "##{@elem_name}-#{id}",
+    link to: "##{@elem_name}-#{id}",
          class: "list-group-item",
          "data-toggle": "collapse",
-         "data-parent": @parent_id
+         "data-parent": @parent_id do
+      caret = tag :span, class: "caret"
+      [text, caret]
+    end
   end
 end

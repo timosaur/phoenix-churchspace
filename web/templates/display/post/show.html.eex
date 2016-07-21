@@ -1,7 +1,12 @@
-<%= render Churchspace.DisplayView, "contents_nav.html", assigns %>
+<div class="row">
+  <div class="col-sm-3" id="sidebar" role="navigation">
+    <%= render Churchspace.DisplayView, "contents_nav.html", assigns %>
+  </div>
 
-<h2><%= @post.title %></h2>
-
-<div>
-  <%= @post.body |> sanitize %>
+  <div class="col-sm-9">
+    <h2><%= @post.title %></h2>
+    <div>
+      <%= @post.body |> sanitize %>
+    </div>
+  </div>
 </div>
