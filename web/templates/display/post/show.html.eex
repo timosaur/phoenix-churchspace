@@ -1,0 +1,12 @@
+<div class="row row-offcanvas row-offcanvas-left">
+  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+    <%= render Churchspace.DisplayView, "contents_nav.html", assigns %>
+  </div>
+
+  <div class="col-xs-12 col-sm-9">
+    <h2><%= @post.title %></h2>
+    <div>
+      <%= @post.body |> sanitize %>
+    </div>
+  </div>
+</div>

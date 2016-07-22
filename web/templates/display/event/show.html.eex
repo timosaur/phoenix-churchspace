@@ -1,0 +1,10 @@
+<h2><%= @event.name %></h2>
+
+<div>
+  <%= @event.description |> sanitize %>
+</div>
+
+<h2>Contents</h2>
+<%= render Churchspace.DisplayView, "contents.html", assigns %>
+
+<%= link "Back", to: view_event_path(@conn, :index) %>

@@ -22,6 +22,7 @@ import "quill"
 
 // import socket from "./socket"
 import {loadEditor} from './editor';
+import {loadSidebar} from './sidebar';
 
 // Initialize page-specific JS
 //
@@ -34,6 +35,10 @@ $(function() {
     case 'post/edit.html':
       loadEditor(document.getElementById('editor'),
                  document.getElementById('editor-input'));
+      break;
+
+    case 'post/show.html':
+      loadSidebar();
       break;
 
   }

@@ -1,0 +1,4 @@
+<h2><%= @event.name %></h2>
+<h3>Table of Contents</h3>
+
+<%= render Churchspace.DisplayView, "contents.html", assigns %>

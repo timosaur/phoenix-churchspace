@@ -1,0 +1,3 @@
+<div class="list-group">
+  <%= construct_posts_sidebar(@conn, @posts, expanded: true) %>
+</div>
