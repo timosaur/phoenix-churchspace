@@ -5,45 +5,69 @@ defmodule Churchspace.DisplayView do
   @parent_id "##{@elem_name}"
 
   def construct_posts_sidebar(conn, posts) do
-    case sidebar_elems(conn, posts) do
-      {elems, []} ->
-        elems
+    create_nested_list_group(conn, nest_by_depth(posts))
+  end
+
+  def nest_by_depth(items) do
+    case do_nest_by_depth(items) do
+      {results, []} ->
+        results
       _ ->
         []
     end
   end
 
-  defp sidebar_elems(_conn, []) do
+  defp do_nest_by_depth([]) do
     {[], []}
   end
 
-  defp sidebar_elems(conn, [first]) do
-    {[list_elem(conn, first)], []}
+  defp do_nest_by_depth([first]) do
+    {[nest_item(first)], []}
   end
 
-  defp sidebar_elems(conn, [%{depth: d} = first | [%{depth: next_d} | _] = rest])
+  defp do_nest_by_depth([%{depth: d} = first | [%{depth: next_d} | _] = rest])
   when next_d < d do
-    {[list_elem(conn, first)], rest}
+    {[nest_item(first)], rest}
   end
 
-  defp sidebar_elems(conn, [%{depth: d} = first | [%{depth: next_d} | _] = rest])
+  defp do_nest_by_depth([%{depth: d} = first | [%{depth: next_d} | _] = rest])
   when next_d == d do
-    {siblings, remaining} = sidebar_elems(conn, rest)
-    {[list_elem(conn, first) | siblings], remaining}
+    {siblings, remaining} = do_nest_by_depth(rest)
+    {[nest_item(first) | siblings], remaining}
   end
 
-  defp sidebar_elems(conn, [%{depth: d} = first | [%{depth: next_d} | _] = rest])
+  defp do_nest_by_depth([%{depth: d} = first | [%{depth: next_d} | _] = rest])
   when next_d > d do
-    {children, remaining} = sidebar_elems(conn, rest)
-    {siblings, remaining} = sidebar_elems(conn, remaining)
-    {sublist_elem(conn, first, children) ++ siblings, remaining}
+    {children, remaining} = do_nest_by_depth(rest)
+    {siblings, remaining} = do_nest_by_depth(remaining)
+    {nest_item_with_children(first, children) ++ siblings, remaining}
+  end
+
+  defp nest_item(post) do
+    %{data: post, children: []}
+  end
+
+  defp nest_item_with_children(post, children) do
+    [%{data: post, children: children}]
+  end
+
+  def create_nested_list_group(conn, posts) do
+    for item <- posts do
+      case item do
+        %{data: post, children: []} ->
+          list_elem(conn, post)
+        %{data: post, children: children} ->
+          child_elems = create_nested_list_group(conn, children)
+          sublist_elem(conn, post, child_elems)
+      end
+    end
   end
 
   defp list_elem(%{assigns: %{post: %{id: page_id}}} = conn, %{id: id} = post)
   when id == page_id do
     link post.title,
          to: view_event_post_path(conn, :show, conn.assigns[:event], post),
-         class: "list-group-item list-group-item-info",
+         class: "list-group-item active",
          "data-parent": @parent_id
   end
 
