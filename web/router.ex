@@ -17,6 +17,7 @@ defmodule Churchspace.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/manage", PageController, :manage
   end
 
   scope "/", Churchspace.Display, as: :view do
