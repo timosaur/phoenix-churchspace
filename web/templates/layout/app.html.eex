@@ -16,11 +16,12 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><%= link "Events", to: event_path(@conn, :index) %></li>
-            <li><%= link "All Posts", to: post_path(@conn, :index) %></li>
+            <li class="visible-xs-inline-block"><a href="#" data-toggle="sidebar">Menu</a></li>
+            <li><%= link "Events", to: view_event_path(@conn, :index) %></li>
           </ul>
         </nav>
-        <span class="logo"></span>
+        <h1 class="logo hidden-xs">Churchspace</h1>
+        <h3 class="logo visible-xs-inline-block">Churchspace</h3>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
