@@ -13,7 +13,6 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import "bootstrap-sass"
-import "quill"
 
 // Import local files
 //

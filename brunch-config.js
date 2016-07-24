@@ -82,12 +82,11 @@ exports.config = {
   npm: {
     enabled: true,
     styles: {
-      quill: ['dist/'],
+      quill: ["dist/"],
     },
     globals: {
-      $: 'jquery',
-      jQuery: 'jquery',
-      Quill: 'quill',
+      $: "jquery",
+      jQuery: "jquery",
     }
   }
 };

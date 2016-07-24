@@ -1,5 +1,7 @@
 // editor.js - Load quill.js and link form element.
 
+import Quill from 'quill';
+
 export function loadEditor(editorElem, inputElem) {
   var toolbarOptions = [
     [{ size: []}],
