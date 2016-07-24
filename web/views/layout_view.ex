@@ -5,4 +5,13 @@ defmodule Churchspace.LayoutView do
     [Phoenix.Naming.resource_name(view_module, "View"), view_template]
     |> Enum.join("/")
   end
+
+  def page_title(conn, default \\ "Churchspace") do
+    case Map.get(conn.assigns, :post) do
+      nil ->
+        default
+      post ->
+        post.title
+    end
+  end
 end

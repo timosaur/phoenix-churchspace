@@ -2,46 +2,51 @@
 
 @import "bootstrap/variables";
 
-$offcanvas-column: 5;
+$sidebar-width: 260px;
+$sidebar-width-neg: -260px;
 
+#sidebar {
+  border-right: 1px solid $list-group-border;
+}
 #sidebar a {
-  border: 0 $list-group-border solid;
-  border-bottom-width: 1px;
+  border: 0;
+  border-bottom: 1px solid $list-group-border;
 }
 #sidebar .list-group-item {
-  margin-bottom: 0;
-  border-radius: $list-group-border-radius;
+  margin: 0;
+  border-radius: 0;
+}
+#sidebar .collapsing {
+  border-left: 5px solid $gray-light;
+}
+#sidebar .collapse {
+  border-left: 5px solid $gray-light;
 }
 
 /* collapsed sidebar styles */
 @media screen and (max-width: $screen-xs-max) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: percentage(-($offcanvas-column / $grid-columns));
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: percentage(-($offcanvas-column / $grid-columns));
-  }
-  .row-offcanvas-right.active {
-    right: percentage(($offcanvas-column / $grid-columns));
-  }
-  .row-offcanvas-left.active {
-    left: percentage(($offcanvas-column / $grid-columns));
-  }
-  .sidebar-offcanvas {
-    position: absolute;
+  .sidr {
+    display: block;
+    position: fixed;
     top: 0;
-    bottom: 0;
-    width: percentage(($offcanvas-column / $grid-columns));
-    padding-top: 20px;
-    border-right: 1px solid $list-group-border;
+    height: 100%;
+    z-index: 999999;
+    width: $sidebar-width;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: white;
+
+    &.right {
+      left: auto;
+      right: $sidebar-width-neg;
+    }
+
+    &.left {
+      left: $sidebar-width-neg;
+      right: auto;
+    }
+  }
+  #sidebar {
+    padding: 0;
   }
 }

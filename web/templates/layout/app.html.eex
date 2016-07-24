@@ -14,14 +14,10 @@
   <body data-js-path="<%= js_path(@view_module, @view_template) %>">
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li class="visible-xs-inline-block"><a href="#" data-toggle="sidebar">Menu</a></li>
-            <li><%= link "Events", to: view_event_path(@conn, :index) %></li>
-          </ul>
-        </nav>
-        <h1 class="logo hidden-xs">Churchspace</h1>
-        <h3 class="logo visible-xs-inline-block">Churchspace</h3>
+        <span class="logo h4"><%= page_title(@conn) %></span>
+        <a href="#sidebar" data-toggle="sidebar" class="visible-xs-block btn pull-right">
+          <span class="glyphicon glyphicon-menu-right"></span>
+        </a>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

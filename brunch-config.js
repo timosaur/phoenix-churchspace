@@ -54,7 +54,10 @@ exports.config = {
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/web\/static\/vendor/]
+      ignore: [
+        /web\/static\/vendor/,
+        "node_modules/sidr/dist/jquery.sidr.js",
+      ]
     },
     sass: {
       options: {
@@ -84,6 +87,9 @@ exports.config = {
     styles: {
       quill: ["dist/"],
     },
+    static: [
+      "node_modules/sidr/dist/jquery.sidr.js",
+    ],
     globals: {
       $: "jquery",
       jQuery: "jquery",
