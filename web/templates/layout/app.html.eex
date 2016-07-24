@@ -16,7 +16,7 @@
       <header class="header">
         <span class="logo h4"><%= page_title(@conn) %></span>
         <div class="overlay"></div>
-        <a href="#sidebar" id="sidebar-toggle" data-toggle="sidebar">
+        <a href="#sidebar" id="sidebar-toggle" class="disabled" data-toggle="sidebar">
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </header>

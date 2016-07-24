@@ -1,6 +1,7 @@
 // sidebar.js - JS for mobile collapsible sidebar
 
 export function loadSidebar() {
+  $('#sidebar-toggle').removeClass('disabled');
   $('[data-toggle=sidebar]').sidr({
     name: 'sidebar',
     displace: false,

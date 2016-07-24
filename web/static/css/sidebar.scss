@@ -47,6 +47,9 @@ $sidebar-width-neg: -260px;
 #sidebar-toggle.active span {
   transform:rotate(-540deg);
 }
+#sidebar-toggle.disabled {
+  display: none !important;
+}
 
 .overlay {
   display: none;
