@@ -4,7 +4,7 @@
   </nav>
 
   <div class="col-sm-8">
-    <div>
+    <div class="text-display">
       <%= @post.body |> sanitize %>
     </div>
   </div>

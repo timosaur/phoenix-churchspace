@@ -32,6 +32,11 @@ form.link, form.button {
   display: inline-block;
 }
 
+/* Display text as-is */
+.text-display p {
+  margin: 0;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
