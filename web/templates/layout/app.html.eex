@@ -15,8 +15,9 @@
     <div class="container">
       <header class="header">
         <span class="logo h4"><%= page_title(@conn) %></span>
-        <a href="#sidebar" data-toggle="sidebar" class="visible-xs-block btn pull-right">
-          <span class="glyphicon glyphicon-menu-right"></span>
+        <div class="overlay"></div>
+        <a href="#sidebar" id="sidebar-toggle" data-toggle="sidebar">
+          <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </header>
 
