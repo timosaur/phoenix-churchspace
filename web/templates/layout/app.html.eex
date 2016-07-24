@@ -7,21 +7,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Churchspace!</title>
+    <title><%= page_title(@conn) %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body data-js-path="<%= js_path(@view_module, @view_template) %>">
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li class="visible-xs-inline-block"><a href="#" data-toggle="sidebar">Menu</a></li>
-            <li><%= link "Events", to: view_event_path(@conn, :index) %></li>
-          </ul>
-        </nav>
-        <h1 class="logo hidden-xs">Churchspace</h1>
-        <h3 class="logo visible-xs-inline-block">Churchspace</h3>
+        <span class="logo h4"><%= page_title(@conn) %></span>
+        <div class="overlay"></div>
+        <a href="#sidebar" id="sidebar-toggle" class="disabled" data-toggle="sidebar">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

@@ -1,3 +1,17 @@
-<div class="list-group">
-  <%= construct_posts_sidebar(@conn, @posts) %>
+<div class="sidebar-wrap">
+  <div class="sidebar-title">
+    <h5>
+      <small>FECSGV</small><br/>
+      <%= @event.name %>
+    </h5>
+  </div>
+  <div class="sidebar-list">
+    <%= link "Event Home", to: view_event_path(@conn, :show, @event), class: "list-group-item" %>
+    <%= construct_posts_sidebar(@conn, @posts) %>
+  </div>
+</div>
+<div class="sidebar-footer">
+  <span class="h6">
+    <small>Made with Churchspace</small>
+  </span>
 </div>

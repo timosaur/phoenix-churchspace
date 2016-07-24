@@ -13,7 +13,6 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import "bootstrap-sass"
-import "quill"
 
 // Import local files
 //
@@ -37,6 +36,7 @@ $(function() {
                  document.getElementById('editor-input'));
       break;
 
+    case 'event/show.html':
     case 'post/show.html':
       loadSidebar();
       break;

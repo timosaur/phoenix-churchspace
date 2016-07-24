@@ -2,46 +2,124 @@
 
 @import "bootstrap/variables";
 
-$offcanvas-column: 5;
+$sidebar-width: 260px;
+$sidebar-width-neg: -260px;
 
+#sidebar {
+  border-right: 5px solid $list-group-border;
+}
 #sidebar a {
-  border: 0 $list-group-border solid;
-  border-bottom-width: 1px;
+  border: 0;
+  border-bottom: 1px solid $list-group-border;
 }
 #sidebar .list-group-item {
-  margin-bottom: 0;
-  border-radius: $list-group-border-radius;
+  margin: 0;
+  border-radius: 0;
+}
+#sidebar .collapsing {
+  border-left: 5px solid $gray-light;
+}
+#sidebar .collapse {
+  border-left: 5px solid $gray-light;
+}
+
+#sidebar .sidebar-wrap {
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 100%;
+}
+#sidebar .sidebar-wrap:before {
+  content: "";
+  display: table;
+}
+#sidebar .sidebar-wrap .sidebar-list {
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-bottom: 50px;
+}
+#sidebar .sidebar-title {
+  border-left: 2px solid $gray-light;
+  padding-left: 7px;
+}
+#sidebar .sidebar-footer {
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 30px;
+  margin-top: -30px;
+}
+
+#sidebar-toggle {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  line-height: 1.1;
+  z-index: 999999;
+}
+#sidebar-toggle span {
+  padding: 4px;
+  border: 5px solid $gray-lighter;
+  border-radius: 16px;
+  background: white;
+
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#sidebar-toggle.active span {
+  transform:rotate(-540deg);
+}
+#sidebar-toggle.disabled {
+  display: none !important;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  opacity: 0.5;
+  z-index: 999998;
 }
 
 /* collapsed sidebar styles */
 @media screen and (max-width: $screen-xs-max) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
+  .sidr {
+    display: block;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    z-index: 999999;
+    width: $sidebar-width;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: white;
+
+    &.right {
+      left: auto;
+      right: $sidebar-width-neg;
+    }
+
+    &.left {
+      left: $sidebar-width-neg;
+      right: auto;
+    }
   }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: percentage(-($offcanvas-column / $grid-columns));
+  #sidebar {
+    padding: 0;
   }
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: percentage(-($offcanvas-column / $grid-columns));
+  #sidebar-toggle {
+    display: block;
   }
-  .row-offcanvas-right.active {
-    right: percentage(($offcanvas-column / $grid-columns));
-  }
-  .row-offcanvas-left.active {
-    left: percentage(($offcanvas-column / $grid-columns));
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: percentage(($offcanvas-column / $grid-columns));
-    padding-top: 20px;
-    border-right: 1px solid $list-group-border;
+
+  .overlay.active {
+    display: block;
   }
 }
