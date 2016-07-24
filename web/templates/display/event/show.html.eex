@@ -1,10 +1,11 @@
-<h2><%= @event.name %></h2>
+<div class="row">
+  <nav class="col-sm-4" id="sidebar" role="navigation">
+    <%= render Churchspace.DisplayView, "contents_nav.html", assigns %>
+  </nav>
 
-<div>
-  <%= @event.description |> sanitize %>
+  <div class="col-sm-8">
+    <div>
+      <%= @event.description |> sanitize %>
+    </div>
+  </div>
 </div>
-
-<h2>Contents</h2>
-<%= render Churchspace.DisplayView, "contents.html", assigns %>
-
-<%= link "Back", to: view_event_path(@conn, :index) %>

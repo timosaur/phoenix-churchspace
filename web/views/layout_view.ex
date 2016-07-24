@@ -9,7 +9,9 @@ defmodule Churchspace.LayoutView do
   def page_title(conn, default \\ "Churchspace") do
     case Map.get(conn.assigns, :post) do
       nil ->
-        default
+        conn.assigns
+        |> Map.get(:event, %{})
+        |> Map.get(:name, default)
       post ->
         post.title
     end

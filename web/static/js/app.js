@@ -36,6 +36,7 @@ $(function() {
                  document.getElementById('editor-input'));
       break;
 
+    case 'event/show.html':
     case 'post/show.html':
       loadSidebar();
       break;
