@@ -26,6 +26,7 @@ form.link, form.button {
   right: 0;
   background: white;
   z-index: 99999;
+  height: 60px;
 }
 
 .logo {
@@ -44,5 +45,18 @@ form.link, form.button {
   }
   .header {
     max-width: 730px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Temporary long header fix */
+  .logo {
+    position: absolute;
+    left: 0;
+    right: 45px;
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow-x: scroll;
+    white-space: nowrap;
   }
 }
