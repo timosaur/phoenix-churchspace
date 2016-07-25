@@ -80,9 +80,19 @@ defmodule Churchspace.DisplayView do
          class: "#{class}"
   end
 
-  defp sublist_elem(_conn, post, child_elems, opts \\ []) do
+  defp sublist_elem(conn, post, child_elems, opts \\ []) do
     name = Keyword.get(opts, :name, @default_name)
-    shown = if Keyword.get(opts, :expanded), do: "in", else: ""
+    shown =
+      case conn.assigns[:post] do
+        nil ->
+          if Keyword.get(opts, :expanded, false), do: "in", else: ""
+        %{parent_path: path} ->
+          is_child =
+            path
+            |> String.split(".")
+            |> Enum.member?(Integer.to_string(post.id))
+          if is_child, do: "in", else: ""
+      end
     sublist =
       content_tag :div, id: "#{name}-#{post.id}", class: "collapse #{shown}" do
         child_elems

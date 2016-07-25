@@ -9,6 +9,7 @@ defmodule Churchspace.Post do
     field :body, :string
     field :is_category, :boolean
     field :sort_index, :integer, default: 0
+    field :parent_path, :string
     belongs_to :event, Churchspace.Event
     belongs_to :parent, __MODULE__
 
@@ -63,17 +64,17 @@ defmodule Churchspace.Post do
     qry = """
       WITH RECURSIVE tree AS
       (
-        SELECT id, title, parent_id, event_id,
+        SELECT id, title, parent_id, event_id, parent_path::text,
                sort_index::text AS path
         FROM posts WHERE parent_id IS NULL
         AND event_id = $1
         UNION
-        SELECT p.id, p.title, p.parent_id, p.event_id,
+        SELECT p.id, p.title, p.parent_id, p.event_id, p.parent_path::text,
                tree.path || '.' || p.sort_index::text AS path
         FROM tree
         JOIN posts p ON p.parent_id = tree.id
       )
-      SELECT id, title, parent_id, event_id,
+      SELECT id, title, parent_id, event_id, parent_path::text,
              path AS sort_path, nlevel(text2ltree(path)) AS depth
       FROM tree
       ORDER BY path, title, id
