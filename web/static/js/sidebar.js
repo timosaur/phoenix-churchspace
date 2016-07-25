@@ -14,4 +14,7 @@ export function loadSidebar() {
       $('.overlay').removeClass('active');
     },
   });
+  $('.overlay').on('touchend', function (e) {
+    $.sidr('close', 'sidebar');
+  });
 }
