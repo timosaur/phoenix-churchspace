@@ -12,6 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :churchspace, Churchspace.Repo,
   adapter: Ecto.Adapters.Postgres,
+  extensions: [{Ecto.Extensions.Ltree, []}],
   username: "postgres",
   password: "postgres",
   database: "churchspace_test",
