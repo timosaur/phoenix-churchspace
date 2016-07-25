@@ -30,7 +30,9 @@ $(function() {
 
   switch ($('body').data('js-path')) {
 
+    case 'event/new.html':
     case 'event/edit.html':
+    case 'post/new.html':
     case 'post/edit.html':
       loadEditor(document.getElementById('editor'),
                  document.getElementById('editor-input'));
