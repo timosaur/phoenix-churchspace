@@ -40,5 +40,3 @@
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
-<%= render Churchspace.EditorView, "basic_editor.html",
-           data: @changeset.data.body, id: "editor" %>

@@ -1,3 +1,0 @@
-<%= content_tag :div, id: @id do %>
-  <%= @data |> sanitize %>
-<% end %>
