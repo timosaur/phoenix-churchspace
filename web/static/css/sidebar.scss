@@ -86,6 +86,7 @@ $sidebar-width-neg: -260px;
   background: black;
   opacity: 0.5;
   z-index: 999998;
+  margin-top: -69px;
 }
 
 /* collapsed sidebar styles */
@@ -94,7 +95,9 @@ $sidebar-width-neg: -260px;
     display: block;
     position: fixed;
     top: 0;
-    height: 100%;
+    bottom: 0;
+    margin-top: -69px;
+    padding-top: 69px !important;
     z-index: 999999;
     width: $sidebar-width;
     overflow-x: hidden;
