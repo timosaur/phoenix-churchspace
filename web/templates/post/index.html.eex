@@ -15,7 +15,7 @@
 <%= for post <- @posts do %>
     <tr>
       <td><%= post.title %></td>
-      <td><%= post.body |> String.slice(0, 255) %></td>
+      <td><%= post.body |> HtmlSanitizeEx.strip_tags() |> String.slice(0, 255) %></td>
       <td><%= post.parent_path %></td>
       <td><%= post.sort_index %></td>
 

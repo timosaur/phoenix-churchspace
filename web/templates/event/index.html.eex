@@ -13,7 +13,7 @@
 <%= for event <- @events do %>
     <tr>
       <td><%= event.name %></td>
-      <td><%= event.description |> String.slice(0, 255) %></td>
+      <td><%= event.description |> HtmlSanitizeEx.strip_tags() |> String.slice(0, 255) %></td>
 
       <td class="text-right">
         <%= link "Show", to: event_path(@conn, :show, event), class: "btn btn-default btn-xs" %>
