@@ -16,5 +16,6 @@ export function loadSidebar() {
   });
   $('.overlay').on('touchend', function (e) {
     $.sidr('close', 'sidebar');
+    e.preventDefault();
   });
 }
