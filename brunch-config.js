@@ -56,7 +56,7 @@ exports.config = {
       // Do not use ES6 compiler in vendor code
       ignore: [
         /web\/static\/vendor/,
-        "node_modules/sidr/dist/jquery.sidr.js",
+        "node_modules/sidr/dist/jquery.sidr.min.js",
       ]
     },
     sass: {
@@ -88,7 +88,7 @@ exports.config = {
       quill: ["dist/"],
     },
     static: [
-      "node_modules/sidr/dist/jquery.sidr.js",
+      "node_modules/sidr/dist/jquery.sidr.min.js",
     ],
     globals: {
       $: "jquery",
