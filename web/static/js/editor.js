@@ -1,26 +1,12 @@
-// editor.js - Load quill.js and link form element.
+// editor.js - Load editor for input.
 
-import Quill from 'quill';
-
-export function loadEditor(editorElem, inputElem) {
-  var toolbarOptions = [
-    [{ size: []}],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ script: 'sub' }, { script: 'super' }],
-    ['list', 'bullet'],
-  ];
-  var quill = new Quill(editorElem, {
-    modules: {
-      toolbar: toolbarOptions,
+export function loadEditor(inputElem) {
+  $(inputElem).summernote({
+    height: 300,
+    callbacks: {
+      onChange: function(contents, $editable) {
+        inputElem.innerHTML = contents;
+      }
     },
-    placeholder: 'Enter details...',
-    theme:'snow',
-  });
-
-  var editor = editorElem.querySelector('.ql-editor');
-
-  // TODO: Move to form onsubmit.
-  quill.on('text-change', function(delta, source) {
-    inputElem.innerHTML = editor.innerHTML;
   });
 }

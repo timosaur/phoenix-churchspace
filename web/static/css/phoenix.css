@@ -25,17 +25,12 @@ form.link, form.button {
   left: 0;
   right: 0;
   background: white;
-  z-index: 99999;
+  z-index: 999; /* < 1050 for fullscreen editor */
   height: 60px;
 }
 
 .logo {
   display: inline-block;
-}
-
-/* Display text as-is */
-.text-display p {
-  margin: 0;
 }
 
 /* Customize container */

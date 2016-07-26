@@ -34,8 +34,7 @@ $(function() {
     case 'event/edit.html':
     case 'post/new.html':
     case 'post/edit.html':
-      loadEditor(document.getElementById('editor'),
-                 document.getElementById('editor-input'));
+      loadEditor(document.getElementById('editor-input'));
       break;
 
     case 'event/show.html':

@@ -68,6 +68,9 @@ exports.config = {
       precision: 8,
     },
     copycat: {
+      "css/font": [
+        "node_modules/summernote/dist/font",
+      ],
       "fonts": [
         "node_modules/bootstrap-sass/assets/fonts/bootstrap",
       ],
@@ -85,10 +88,11 @@ exports.config = {
   npm: {
     enabled: true,
     styles: {
-      quill: ["dist/"],
+      summernote: ["dist/"],
     },
     static: [
       "node_modules/sidr/dist/jquery.sidr.min.js",
+      "node_modules/summernote/dist/summernote.min.js",
     ],
     globals: {
       $: "jquery",
