@@ -60,6 +60,32 @@ defmodule Churchspace.Post do
     from p in query, select: {p.title, p.id}
   end
 
+  def sorted_event_full_posts(%Churchspace.Event{id: id}), do: sorted_event_full_posts(id)
+  def sorted_event_full_posts(id) when is_binary(id), do: sorted_event_full_posts(String.to_integer(id))
+  def sorted_event_full_posts(event_id) when is_integer(event_id) do
+    qry = """
+      WITH RECURSIVE tree AS
+      (
+        SELECT id, title, body, parent_id, event_id, parent_path::text,
+               sort_index::text AS path
+        FROM posts WHERE parent_id IS NULL
+        AND event_id = $1
+        UNION
+        SELECT p.id, p.title, p.body, p.parent_id, p.event_id, p.parent_path::text,
+               tree.path || '.' || p.sort_index::text AS path
+        FROM tree
+        JOIN posts p ON p.parent_id = tree.id
+      )
+      SELECT id, title, body, parent_id, event_id, parent_path::text,
+             path AS sort_path, nlevel(text2ltree(path)) AS depth
+      FROM tree
+      ORDER BY path, title, id
+      """
+    %{qry: qry, params: [event_id]}
+  end
+
+  def sorted_event_posts(%Churchspace.Event{id: id}), do: sorted_event_full_posts(id)
+  def sorted_event_posts(id) when is_binary(id), do: sorted_event_full_posts(String.to_integer(id))
   def sorted_event_posts(event_id) when is_integer(event_id) do
     qry = """
       WITH RECURSIVE tree AS
@@ -81,7 +107,4 @@ defmodule Churchspace.Post do
       """
     %{qry: qry, params: [event_id]}
   end
-
-  def sorted_event_posts(%Churchspace.Event{id: event_id}), do: sorted_event_posts(event_id)
-  def sorted_event_posts(event_id), do: sorted_event_posts(String.to_integer(event_id))
 end
