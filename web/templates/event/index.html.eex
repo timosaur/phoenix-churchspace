@@ -16,9 +16,9 @@
       <td><%= event.description |> HtmlSanitizeEx.strip_tags() |> String.slice(0, 255) %></td>
 
       <td class="text-right">
+        <%= link "Posts", to: event_post_path(@conn, :index, event), class: "btn btn-default btn-xs" %>
         <%= link "Show", to: event_path(@conn, :show, event), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: event_path(@conn, :edit, event), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>

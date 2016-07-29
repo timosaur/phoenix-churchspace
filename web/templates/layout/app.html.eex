@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body data-js-path="<%= js_path(@view_module, @view_template) %>">
+  <body data-js-path="<%= js_path(@conn, @view_module, @view_template) %>">
     <div class="container">
       <header class="header">
         <span class="logo h4"><%= page_title(@conn) %></span>

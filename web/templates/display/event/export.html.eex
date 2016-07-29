@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  </head>
+  <body>
+    <div style="page-break-after: always;">
+      <h1><%= @event.name %></h1>
+      <h2><small>FECSGV</small></h1>
+      <ul>
+        <%= for post <- @posts do %>
+          <li><%= post.title %></li>
+        <%= end %>
+      </ul>
+    </div>
+    <div style="page-break-after: always;">
+      <h2>Introduction</h2>
+      <%= @event.description |> HtmlSanitizeEx.html5() |> Phoenix.HTML.raw() %>
+    </div>
+    <%= for post <- @posts do %>
+      <div style="page-break-after: always;">
+        <h2><%= post.title %></h2>
+        <%= post.body |> HtmlSanitizeEx.html5() |> Phoenix.HTML.raw() %>
+      </div>
+    <% end %>
+  </body>
+</html>
