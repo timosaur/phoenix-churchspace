@@ -19,7 +19,7 @@ defmodule Churchspace.Mixfile do
   def application do
     [mod: {Churchspace, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_html_sanitizer]]
+                    :phoenix_ecto, :postgrex, :pdf_generator, :phoenix_html_sanitizer]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,6 +34,7 @@ defmodule Churchspace.Mixfile do
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
+     {:pdf_generator, "~> 0.3"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_html_sanitizer, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},

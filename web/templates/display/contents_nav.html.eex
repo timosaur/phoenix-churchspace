@@ -11,6 +11,14 @@
   </div>
 </div>
 <div class="sidebar-footer">
+  <p>
+    <small>
+      <%= link to: view_event_export_path(@conn, :export, @event) do %>
+        Download this event
+        <span style="font-size:1.0em;" class="glyphicon glyphicon-download-alt"></span>
+      <% end %>
+    </small>
+  </p>
   <span class="h6">
     <small>Made with Churchspace</small>
   </span>

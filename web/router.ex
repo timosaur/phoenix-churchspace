@@ -25,6 +25,7 @@ defmodule Churchspace.Router do
 
     resources "/events", EventController, only: [:index, :show] do
       get "/index", PostController, :index
+      get "/export", EventController, :export, as: :export
       get "/:id", PostController, :show
     end
   end
